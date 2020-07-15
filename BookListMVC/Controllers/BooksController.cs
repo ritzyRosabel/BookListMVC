@@ -20,6 +20,7 @@ namespace BookListMVC.Controllers
             return View();
         }
 
+        #region ApiCalls
         [HttpGet]
         [Route("api/Book")]
         public IActionResult GetAll()
@@ -30,7 +31,7 @@ namespace BookListMVC.Controllers
         [Route("api/DeleteBook")]
         public async Task<IActionResult> Delete(int id)
         {
-            var BookFromDb = await _db.Books.FirstOrDefaultAsync(B=> B.ID == id);
+            var BookFromDb = await _db.Books.FirstOrDefaultAsync(B => B.ID == id);
             if (BookFromDb == null)
             {
                 return Json(new { success = false, message = "Failed to delete record." });
@@ -39,5 +40,6 @@ namespace BookListMVC.Controllers
             await _db.SaveChangesAsync();
             return Json(new { success = true, message = "Successfully deleted" });
         }
+        #endregion
     }
 }
