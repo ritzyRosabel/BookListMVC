@@ -14,9 +14,9 @@ function LoadDataTable() {
         },
         "columns": [
             {
-                "data": "name", "width": "20%";
-                "data": "author", "width": "20%";
-                "data": "isbn", "width": "20%";
+                "data": "name", "width": "20%",
+                "data": "author", "width": "20%",
+                "data": "isbn", "width": "20%",
                 "data": "id",
                 "render": function(data) {
                     return `<div class="text-center">
@@ -36,7 +36,7 @@ function Delete(url, id) {
         text: "Once deleted, record cannot be recorvered",
         icon: "warning",
         dangerMode: true,
-    }).then(willDelete){
+    }).then((willDelete) => {
         if (willDelete) {
             $.ajax({
                 url: url,
@@ -48,12 +48,11 @@ function Delete(url, id) {
                     if (data.success) {
                         toastr.success(data.message);
                         dataTable.ajax.reload();
-                    } else
-                    {
+                    } else {
                         toastr.error(data.message);
                     }
                 }
             });
         }
-    }
+    });
 }
