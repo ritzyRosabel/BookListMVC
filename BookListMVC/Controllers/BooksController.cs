@@ -15,8 +15,20 @@ namespace BookListMVC.Controllers
         {
             _db = db;
         }
+        [BindProperty]
+        public Book Book { get; set; }
         public IActionResult Index()
         {
+            return View();
+        }
+        public IActionResult Upsert( int ? id)
+        {
+            Book book = new Book();
+            if(id == null)
+            {
+                return View(Book);
+            }
+            //
             return View();
         }
 
