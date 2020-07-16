@@ -27,7 +27,7 @@ namespace BookListMVC.Controllers
             Book book = new Book();
             if(id == null)
             {
-                return View(Book);
+                return View(book);
             }
             book =  _db.Books.FirstOrDefault(b => b.ID == id);
             if(book== null)
