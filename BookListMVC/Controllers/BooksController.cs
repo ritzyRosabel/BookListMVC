@@ -21,6 +21,7 @@ namespace BookListMVC.Controllers
         {
             return View();
         }
+        [HttpGet]
         public IActionResult Upsert( int ? id)
         {
             Book book = new Book();
@@ -28,8 +29,13 @@ namespace BookListMVC.Controllers
             {
                 return View(Book);
             }
+            book =  _db.Books.FirstOrDefault(b => b.ID == id);
+            if(book== null)
+            {
+                return NotFound();
+            }
             //
-            return View();
+            return View(book);
         }
 
         #region ApiCalls
