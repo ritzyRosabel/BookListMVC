@@ -52,7 +52,7 @@ namespace BookListMVC.Controllers
                 _db.Books.Update(Book);
                 }
                 _db.SaveChanges();
-                RedirectToAction("Index");
+              return  RedirectToAction("Index");
             }
        return View(Book);
         }
