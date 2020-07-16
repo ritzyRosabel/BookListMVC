@@ -1,33 +1,34 @@
 ﻿var dataTable;
 
-$(document).ready({
+$(document).ready(function () {
     LoadDataTable();
 });
 
 function LoadDataTable() {
     dataTable = $('#DT_Load').DataTable({
         "ajax": {
-            "url": "/books/getall",
+            "url": "/Books/GetAll",
             "type": "GET",
-            "datatype":"json"
+            "datatype": "json"
 
         },
         "columns": [
+            { "data": "name", "width": "20%" },
+            { "data": "author", "width": "20%" },
+            { "data": "isbn", "width": "20%" },
             {
-                "data": "name", "width": "20%",
-                "data": "author", "width": "20%",
-                "data": "isbn", "width": "20%",
                 "data": "id",
-                "render": function(data) {
-                    return `<div class="text-center">
+                "render": function (data) {
+                    return `<div>
                             <a href="Books/Edit?id=${data}" class='btn btn-success text-white' style='cursor:pointer; width:70px;'> Edit</a>
                             <a class='btn btn-danger text-white' style='cursor:pointer;width:70px' onclick="Delete('api/DeleteBook',${data})"> Delete</a> </div>`;
-                }
+                },
+                "width": "40%"
             }],
         "language": {
-            "emptyTable":"No data found"
+            "emptyTable": "No data found"
         },
-        "width":"100%"
+        "width": "100%"
     });
 }
 function Delete(url, id) {
@@ -39,16 +40,17 @@ function Delete(url, id) {
     }).then((willDelete) => {
         if (willDelete) {
             $.ajax({
+                type: "DELETE",
                 url: url,
                 data: {
                     "id": id
                 },
-                type: "DELETE",
                 success: function (data) {
                     if (data.success) {
                         toastr.success(data.message);
                         dataTable.ajax.reload();
-                    } else {
+                    }
+                    else {
                         toastr.error(data.message);
                     }
                 }

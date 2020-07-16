@@ -22,10 +22,11 @@ namespace BookListMVC.Controllers
 
         #region ApiCalls
         [HttpGet]
-        [Route("api/Book")]
+        
         public IActionResult GetAll()
         {
-            return Json(new { data = _db.Books.ToList() });
+            var result =  Json(new { data = _db.Books.ToList() });
+            return result;
         }
         [HttpDelete]
         [Route("api/DeleteBook")]
