@@ -21,7 +21,7 @@ function LoadDataTable() {
                 "render": function (data) {
                     return `<div>
                             <a href="Books/Edit?id=${data}" class='btn btn-success text-white' style='cursor:pointer; width:70px;'> Edit</a>
-                            <a class='btn btn-danger text-white' style='cursor:pointer;width:70px' onclick="Delete('api/DeleteBook',${data})"> Delete</a> </div>`;
+                            <a class='btn btn-danger text-white' style='cursor:pointer;width:80px' onclick="Delete('api/DeleteBook',${data})"> Delete</a> </div>`;
                 },
                 "width": "40%"
             }],
